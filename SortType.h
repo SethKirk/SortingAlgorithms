@@ -7,19 +7,20 @@
 class SortType {
   //Public Members and Variables
   public:
-  int *arraySort;
-    SortType(int array);
-    void print(int array[]);
+    SortType(int l, int array[]);
+    ~SortType();
+    void print();
     void reset();
-    void initialize(int number);
     void insertSort();
     void quickSort();
-    void mergeSort();
-    //void insertItem(int pos, int array[], int lngth);
+    void mergeSort(int lft, int rght);
+    void mergeArray(int lft, int mid, int mid2, int rght);
   //Private Members  
   private:
-    
     int index;
+    int length;
     long cmprsnCount;
+    int *arraySort;
+    int *temp;
 };
 #endif

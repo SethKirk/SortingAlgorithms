@@ -1,29 +1,29 @@
 //main.cpp
-#include <fstream>
 #include <iostream>
+#include <iterator>
+#include <istream>
+#include <fstream>
 #include "SortType.h"
 //main function
 int main(int argc, char *argv[]){
   bool run = true;
   char cinput;
-  int input;
+  const int ARRAY_LENGTH = 10000;
+  int arr[ARRAY_LENGTH];
   //Open File
-  std::fstream fs;
-  fs.open(argv[1],std::fstream::in);
+  std::ifstream fs;
+  fs.open(argv[1]);
   //Read Input From File
   if(fs.is_open())
   {
-    SortType sort(999999);
-    fs>>input;
-    while(!fs.eof())
+    int cnt = 0;
+    while(cnt<ARRAY_LENGTH && fs>>arr[cnt])
     {
-      sort.initialize(input);
-      fs>>input;
-    } 
-    sort.print(sort.arraySort);
-    std::cout<<"init\n";
-    sort.reset();
-     //User Command Input
+      cnt++;
+    }
+    fs.close();
+    SortType sort(cnt,arr);
+    //User Command Input
     while(run)
     { 
       std::cout<<"Enter A Sorting Algorithm: ";
@@ -32,13 +32,26 @@ int main(int argc, char *argv[]){
       {
         //Insert
         case 'i':
+          std::cout<<"Insertion Sort: ";
           sort.insertSort();
-          std::cout<<"sorted\n";
+          sort.print();
+          sort.reset();
           break;
-        //Delete  
+        //Merge  
         case 'm':
+          std::cout<<"Merge Sort: ";
+          sort.mergeSort(0,cnt-1);
+          sort.print();
+          sort.reset();
           break;
+        //Quick  
         case 'q':
+          std::cout<<"Quick Sort: ";
+          sort.quickSort();
+          sort.reset();
+          break; 
+        //Exit   
+        case 'e':
           std::cout<<"Quiting....\n";
           run = false;
           break;  
