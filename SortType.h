@@ -12,9 +12,11 @@ class SortType {
     void print();
     void reset();
     void insertSort();
-    void quickSort();
+    void quickSort(int low, int high);
     void mergeSort(int lft, int rght);
     void mergeArray(int lft, int mid, int mid2, int rght);
+    void swap(int* a, int* b);
+    int partition(int low, int high);
   //Private Members  
   private:
     int index;

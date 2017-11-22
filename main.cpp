@@ -47,7 +47,8 @@ int main(int argc, char *argv[]){
         //Quick  
         case 'q':
           std::cout<<"Quick Sort: ";
-          sort.quickSort();
+          sort.quickSort(0, cnt-1);
+	  sort.print();
           sort.reset();
           break; 
         //Exit   

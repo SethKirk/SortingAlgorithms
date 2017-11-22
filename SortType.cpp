@@ -111,6 +111,34 @@ void SortType::mergeArray(int lo, int mid, int mid2, int hi){
   } 
   delete tmp;
 }
-void SortType::quickSort(){
-  int temp[sizeof(arraySort)];
+void SortType::swap(int* a, int* b){
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+int SortType::partition(int low, int high){
+  int pivot = arraySort[high]; 
+  int i = (low - 1);
+ 
+  for (int j = low; j <= high- 1; j++)
+    {
+      cmprsnCount++;
+      if (arraySort[j] <= pivot)
+        {
+	  cmprsnCount++;
+	  i++;  
+	  swap(&arraySort[i],&arraySort[j]);
+        }
+    }
+  swap(&arraySort[i + 1], &arraySort[high]);
+  return (i + 1);
+}
+void SortType::quickSort(int low, int high){
+  if (low < high)
+    {
+      cmprsnCount++;
+      int div = partition(low, high);
+      quickSort(low, div - 1);
+      quickSort(div + 1, high);
+    }
 }
